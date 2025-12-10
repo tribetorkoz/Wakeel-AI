@@ -31,7 +31,7 @@ const Features: React.FC = () => {
   const { t } = useLanguage();
 
   return (
-    <section id="features" className="py-32 bg-black relative">
+    <section id="features" className="py-24 bg-black relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         <div className="mb-20 md:flex md:items-end md:justify-between pb-12 border-b border-white/5">
@@ -141,6 +141,9 @@ const Features: React.FC = () => {
              >
                 {t.features.cta_banner.btn} <ArrowRight size={20} />
              </button>
+             <div className="mt-4 text-xs font-semibold uppercase tracking-wider text-zinc-500">
+                14-Day Free Pilot • Cancel Anytime
+             </div>
         </div>
       </div>
     </section>

@@ -53,6 +53,9 @@ const Header: React.FC = () => {
         
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-1">
+          <button onClick={() => scrollTo('how-it-works')} className="px-4 py-2 text-sm font-medium text-zinc-400 hover:text-white transition-colors rounded-full hover:bg-white/5">
+             {lang === 'ar' ? 'كيف نعمل' : 'How it Works'}
+          </button>
           <button onClick={() => scrollTo('showcase')} className="px-4 py-2 text-sm font-medium text-zinc-400 hover:text-white transition-colors rounded-full hover:bg-white/5">
             {t.nav.showcase}
           </button>
@@ -105,6 +108,9 @@ const Header: React.FC = () => {
               onClick={e => e.stopPropagation()}
             >
               <div className="flex flex-col">
+                <button onClick={() => scrollTo('how-it-works')} className="w-full text-start px-6 py-4 rounded-2xl text-lg font-medium text-zinc-300 hover:bg-zinc-800 hover:text-white transition-colors">
+                  {lang === 'ar' ? 'كيف نعمل' : 'How it Works'}
+                </button>
                 <button onClick={() => scrollTo('showcase')} className="w-full text-start px-6 py-4 rounded-2xl text-lg font-medium text-zinc-300 hover:bg-zinc-800 hover:text-white transition-colors">
                   {t.nav.showcase}
                 </button>

@@ -4,6 +4,8 @@ import Header from './components/Header';
 import Hero from './components/Hero';
 import Features from './components/Features';
 import ProductShowcase from './components/ProductShowcase';
+import HowItWorks from './components/HowItWorks';
+import Testimonials from './components/Testimonials';
 import Footer from './components/Footer';
 import NeuralBackground from './components/NeuralBackground';
 import ClickSound from './components/ClickSound';
@@ -49,11 +51,19 @@ function App() {
           <Hero />
           
           <div className="reveal-on-scroll fade-up">
+            <HowItWorks />
+          </div>
+
+          <div className="reveal-on-scroll fade-up">
             <ProductShowcase />
           </div>
 
           <div className="reveal-on-scroll fade-up">
             <Features />
+          </div>
+          
+          <div className="reveal-on-scroll fade-up">
+            <Testimonials />
           </div>
         </main>
         
