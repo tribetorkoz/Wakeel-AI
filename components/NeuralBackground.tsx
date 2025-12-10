@@ -14,13 +14,18 @@ const NeuralBackground: React.FC = () => {
     let width = window.innerWidth;
     let height = window.innerHeight;
     
-    // Performance Optimization: Reduce count on small screens
+    // Performance Optimization: Drastic reduction for mobile
     const isMobile = width < 768;
-    const PARTICLE_COLOR = 'rgba(255, 255, 255, 0.12)';
-    const LINE_COLOR = 'rgba(99, 102, 241, 0.12)';
-    // Use fewer particles on mobile for better battery life
-    const PARTICLE_COUNT = Math.floor((width * height) / (isMobile ? 25000 : 15000));
-    const CONNECTION_DISTANCE = isMobile ? 100 : 150;
+    const PARTICLE_COLOR = 'rgba(255, 255, 255, 0.08)'; // Slightly more subtle
+    const LINE_COLOR = 'rgba(99, 102, 241, 0.08)';
+    
+    // Use MUCH fewer particles on mobile for better battery life & less distraction
+    // Desktop: ~130 particles (depending on res)
+    // Mobile: ~30 particles
+    const particleDivisor = isMobile ? 60000 : 20000; 
+    const PARTICLE_COUNT = Math.floor((width * height) / particleDivisor);
+    
+    const CONNECTION_DISTANCE = isMobile ? 80 : 150;
     const MOUSE_DISTANCE = 200;
 
     interface Particle {
@@ -41,12 +46,15 @@ const NeuralBackground: React.FC = () => {
       canvas.height = height;
       particles = [];
 
+      // Don't render anything if screen is extremely small (watch size)
+      if (width < 300) return;
+
       for (let i = 0; i < PARTICLE_COUNT; i++) {
         particles.push({
           x: Math.random() * width,
           y: Math.random() * height,
-          vx: (Math.random() - 0.5) * 0.15,
-          vy: (Math.random() - 0.5) * 0.15,
+          vx: (Math.random() - 0.5) * (isMobile ? 0.05 : 0.1), // Slower on mobile
+          vy: (Math.random() - 0.5) * (isMobile ? 0.05 : 0.1),
           size: Math.random() * 1.5 + 0.5
         });
       }
@@ -67,6 +75,7 @@ const NeuralBackground: React.FC = () => {
         ctx.fillStyle = PARTICLE_COLOR;
         ctx.fill();
 
+        // Mouse interaction (only if not scrolling heavily)
         const dxMouse = mouse.x - p.x;
         const dyMouse = mouse.y - p.y;
         const distMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
@@ -79,8 +88,9 @@ const NeuralBackground: React.FC = () => {
           ctx.lineTo(mouse.x, mouse.y);
           ctx.stroke();
           
-          p.x += dxMouse * 0.01;
-          p.y += dyMouse * 0.01;
+          // Gentle push
+          p.x += dxMouse * 0.005; 
+          p.y += dyMouse * 0.005;
         }
 
         for (let j = i + 1; j < particles.length; j++) {
@@ -90,11 +100,12 @@ const NeuralBackground: React.FC = () => {
           const dist = Math.sqrt(dx * dx + dy * dy);
 
           if (dist < CONNECTION_DISTANCE) {
+            // Only draw line if mouse is somewhat close to one of them (Optimization)
             const p2DistMouse = Math.sqrt((mouse.x - p2.x)**2 + (mouse.y - p2.y)**2);
             
             if (distMouse < MOUSE_DISTANCE || p2DistMouse < MOUSE_DISTANCE) {
                 ctx.beginPath();
-                ctx.strokeStyle = `rgba(255, 255, 255, ${0.1 - dist/CONNECTION_DISTANCE * 0.1})`;
+                ctx.strokeStyle = `rgba(255, 255, 255, ${0.08 - dist/CONNECTION_DISTANCE * 0.08})`;
                 ctx.lineWidth = 0.5;
                 ctx.moveTo(p.x, p.y);
                 ctx.lineTo(p2.x, p2.y);

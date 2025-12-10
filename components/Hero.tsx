@@ -58,43 +58,43 @@ const Hero: React.FC = () => {
   ];
 
   return (
-    <section className="relative pt-24 pb-20 md:pb-32 min-h-[90vh] flex flex-col items-center justify-center overflow-hidden">
+    <section className="relative pt-32 pb-24 md:pt-40 md:pb-32 min-h-[90vh] flex flex-col items-center justify-center overflow-hidden">
       
       <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
         
         {/* Minimalist Badge */}
-        <div className="mb-6 animate-fade-in-up">
-            <span className="inline-flex items-center gap-2 border border-white/10 bg-white/5 rounded-full px-4 py-1.5 text-[11px] font-mono uppercase tracking-widest text-zinc-400 backdrop-blur-sm">
+        <div className="mb-8 animate-fade-in-up">
+            <span className="inline-flex items-center gap-2 border border-zinc-800 bg-zinc-900/50 rounded-full px-4 py-1.5 text-[11px] font-mono uppercase tracking-widest text-zinc-400 backdrop-blur-sm">
                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
                {t.hero.badge}
             </span>
         </div>
 
-        {/* Headline */}
-        <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-white mb-6 max-w-5xl mx-auto leading-[1.1] animate-fade-in-up delay-100">
+        {/* Headline - Bolder and More Impactful */}
+        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-white mb-8 max-w-5xl mx-auto leading-[1.05] animate-fade-in-up delay-100">
           {t.hero.title}
         </h1>
         
-        {/* Subtitle */}
-        <p className="text-lg md:text-xl text-zinc-400 mb-12 max-w-2xl mx-auto font-light leading-relaxed animate-fade-in-up delay-200">
+        {/* Subtitle - Refined Typography */}
+        <p className="text-xl md:text-2xl text-zinc-400 mb-12 max-w-3xl mx-auto font-light leading-relaxed animate-fade-in-up delay-200">
           {t.hero.subtitle}
         </p>
 
-        {/* Main Form Area */}
-        <div className="w-full max-w-md animate-fade-in-up delay-300 relative z-30">
-           <div className="bg-zinc-900/50 backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl ring-1 ring-white/5">
+        {/* Main Form Area - Vertical Stack */}
+        <div className="w-full max-w-sm animate-fade-in-up delay-300 relative z-30">
+           <div className="bg-transparent md:bg-zinc-900/30 md:backdrop-blur-sm md:border border-white/5 rounded-2xl p-0 md:p-8">
                {isSuccess ? (
-                 <div className="text-center animate-fade-in py-8">
+                 <div className="text-center animate-fade-in py-8 bg-zinc-900/80 rounded-2xl border border-emerald-500/20">
                     <div className="w-16 h-16 bg-emerald-500/10 rounded-full flex items-center justify-center mx-auto mb-6 text-emerald-500 border border-emerald-500/20">
                       <CheckCircle size={32} strokeWidth={1.5} />
                     </div>
                     <h3 className="text-white font-bold text-xl mb-2">{t.hero.success.title}</h3>
-                    <p className="text-zinc-500 text-sm leading-relaxed">{t.hero.success.desc}</p>
+                    <p className="text-zinc-500 text-sm leading-relaxed px-4">{t.hero.success.desc}</p>
                  </div>
                ) : (
-                 <form onSubmit={handleSubmit} className="space-y-3">
+                 <form onSubmit={handleSubmit} className="space-y-4">
                     
-                    <div className="grid grid-cols-2 gap-3">
+                    <div className="space-y-4">
                       <input 
                           type="text" 
                           name="name"
@@ -102,7 +102,7 @@ const Hero: React.FC = () => {
                           placeholder={t.hero.placeholder_name}
                           value={formData.name}
                           onChange={handleChange}
-                          className={`w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-base md:text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-white/30 focus:bg-black/80 transition-all ${isRtl ? 'text-right' : 'text-left'}`}
+                          className={`w-full bg-black border border-zinc-800 rounded-xl px-5 py-4 text-base text-white placeholder-zinc-600 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-900/50 transition-all shadow-sm ${isRtl ? 'text-right' : 'text-left'}`}
                       />
                       <input 
                           type="text" 
@@ -111,31 +111,30 @@ const Hero: React.FC = () => {
                           placeholder={t.hero.placeholder_company}
                           value={formData.company}
                           onChange={handleChange}
-                          className={`w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-base md:text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-white/30 focus:bg-black/80 transition-all ${isRtl ? 'text-right' : 'text-left'}`}
+                          className={`w-full bg-black border border-zinc-800 rounded-xl px-5 py-4 text-base text-white placeholder-zinc-600 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-900/50 transition-all shadow-sm ${isRtl ? 'text-right' : 'text-left'}`}
+                      />
+                      <input 
+                          type="email" 
+                          name="email"
+                          required
+                          placeholder={t.hero.placeholder_email}
+                          value={formData.email}
+                          onChange={handleChange}
+                          className={`w-full bg-black border border-zinc-800 rounded-xl px-5 py-4 text-base text-white placeholder-zinc-600 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-900/50 transition-all shadow-sm ${isRtl ? 'text-right' : 'text-left'}`}
                       />
                     </div>
-
-                    <input 
-                        type="email" 
-                        name="email"
-                        required
-                        placeholder={t.hero.placeholder_email}
-                        value={formData.email}
-                        onChange={handleChange}
-                        className={`w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-base md:text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-white/30 focus:bg-black/80 transition-all ${isRtl ? 'text-right' : 'text-left'}`}
-                    />
 
                     <button 
                       type="submit" 
                       disabled={isSubmitting}
-                      className="w-full bg-white text-black hover:bg-zinc-200 disabled:opacity-70 disabled:cursor-not-allowed transition-colors rounded-lg py-3.5 font-bold text-sm flex items-center justify-center gap-2 group"
+                      className="w-full bg-white text-black hover:bg-zinc-200 disabled:opacity-70 disabled:cursor-not-allowed transition-all rounded-xl py-4 font-bold text-sm md:text-base flex items-center justify-center gap-2 group shadow-lg shadow-white/5 hover:scale-[1.01] active:scale-[0.99]"
                     >
                       {isSubmitting ? (
-                        <Loader2 size={18} className="animate-spin" />
+                        <Loader2 size={20} className="animate-spin" />
                       ) : (
                         <>
                           <span>{t.hero.btn_join}</span>
-                          <ArrowRight size={16} className={`${isRtl ? 'rotate-180' : ''} group-hover:translate-x-1 transition-transform`} />
+                          <ArrowRight size={18} className={`${isRtl ? 'rotate-180' : ''} group-hover:translate-x-1 transition-transform`} />
                         </>
                       )}
                     </button>
@@ -143,22 +142,26 @@ const Hero: React.FC = () => {
                     {errorMsg && (
                         <p className="text-red-400 text-xs text-center mt-2">{errorMsg}</p>
                     )}
+
+                    <div className="text-center pt-2">
+                         <span className="text-zinc-500 text-xs">Join growing list of companies.</span>
+                    </div>
                     
-                    <div className="flex items-center justify-center gap-2 pt-3 opacity-50">
-                        <Lock size={10} className="text-zinc-500" />
-                        <span className="text-[10px] text-zinc-500 uppercase tracking-wider">{t.hero.privacy}</span>
+                    <div className="flex items-center justify-center gap-2 pt-1 opacity-60">
+                        <Lock size={10} className="text-zinc-600" />
+                        <span className="text-[10px] text-zinc-600 uppercase tracking-wider">{t.hero.privacy}</span>
                     </div>
                  </form>
                )}
            </div>
         </div>
 
-        {/* Trust Strip */}
-        <div className="w-full border-t border-white/5 pt-10 mt-16">
-           <p className="text-zinc-600 text-[10px] uppercase tracking-[0.2em] mb-6 font-medium">{t.hero.footer_text}</p>
-           <div className="flex w-full justify-center opacity-20 space-x-8 md:space-x-16 items-center flex-wrap grayscale mix-blend-screen pointer-events-none select-none">
+        {/* Trust Strip - Low opacity logos */}
+        <div className="w-full max-w-4xl mx-auto mt-20 md:mt-24 reveal-on-scroll fade-up">
+           <p className="text-zinc-600 text-[10px] uppercase tracking-[0.2em] mb-8 font-semibold opacity-70">{t.hero.footer_text}</p>
+           <div className="flex flex-wrap justify-center gap-x-8 gap-y-6 md:gap-x-16 grayscale opacity-30 hover:opacity-50 transition-opacity duration-500">
                {logos.map((logo, index) => (
-                  <span key={index} className="text-lg md:text-xl font-bold text-white tracking-widest font-mono">
+                  <span key={index} className="text-xl md:text-2xl font-bold text-white tracking-widest font-mono select-none cursor-default">
                       {logo.name}
                   </span>
                ))}

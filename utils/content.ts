@@ -8,13 +8,13 @@ export const content = {
     },
     hero: {
       badge: "Enterprise Autonomous System",
-      title: "The Workforce of the Future.",
-      subtitle: "Deploy specialized AI Agents to automate support, analysis, and operations. Engineered for stability and scale.",
+      title: "AI Agents for Real Business Automation.",
+      subtitle: "Let Wakeel AI handle support, documents, and sales while you focus on growth.",
       placeholder_name: "Full Name",
       placeholder_company: "Company Name",
       placeholder_email: "Work Email Address",
       btn_join: "Request Priority Access",
-      footer_text: "SOC2 Compliant • End-to-End Encrypted",
+      footer_text: "Trusted by early teams building with AI",
       privacy: "Your data is secure. No public model training.",
       success: {
         title: "Position Secured",
@@ -25,24 +25,24 @@ export const content = {
       title: "Neural Engine Execution",
       subtitle: "Watch Wakeel process unstructured data into actionable intelligence in real-time.",
       simulation: {
-        input_label: "User Command",
-        input_text: "Analyze the attached Q3_Financial_Report.pdf. Extract revenue metrics and identify key growth drivers.",
+        input_label: "Terminal Input",
+        input_text: "./wakeel-cli analyze --file Q3_Financials.pdf --extract revenue_metrics",
         processing: [
-          "Initializing Analyst Node...",
-          "Parsing unstructured PDF data...",
-          "Identifying tabular structures...",
-          "Cross-referencing historical benchmarks...",
-          "Generating executive summary..."
+          "> Uploading Q3_Financials.pdf (1.2MB)...",
+          "> Initializing OCR & Semantic Parsing...",
+          "> Extracting tabular data structure...",
+          "> Identifying key growth drivers...",
+          "> Generating executive summary..."
         ],
-        output_label: "Agent Output",
+        output_label: "System Output",
         output_json: {
-          status: "Success",
+          status: "Task Completed ✓",
           latency: "142ms",
           data: {
             revenue: "$4.2M (+12% QoQ)",
             net_profit: "$840k (20% margin)",
             key_driver: "Enterprise adoption in MENA region increased by 45%.",
-            action: "Report generated and emailed to stakeholders."
+            action: "Report generated: /exports/summary_q3.pdf"
           }
         }
       }
@@ -97,13 +97,13 @@ export const content = {
     },
     hero: {
       badge: "نظام أتمتة مؤسسي",
-      title: "قوة عمل المستقبل.",
-      subtitle: "اعتمد على وكلاء الذكاء الاصطناعي لأتمتة الدعم والتحليل والعمليات. هندسة مصممة للاستقرار والتوسع.",
+      title: "وكلاء ذكاء اصطناعي لأتمتة أعمالك.",
+      subtitle: "حلول ذكاء اصطناعي مؤسسية لأتمتة خدمة العملاء وتحليل الوثائق وزيادة الإنتاجية.",
       placeholder_name: "الاسم الكامل",
       placeholder_company: "اسم المؤسسة",
       placeholder_email: "البريد الإلكتروني للعمل",
       btn_join: "طلب وصول ذو أولوية",
-      footer_text: "متوافق مع معايير SOC2 • تشفير شامل",
+      footer_text: "موثوق به من قبل الفرق الرائدة",
       privacy: "بياناتك آمنة. لا نستخدمها لتدريب النماذج العامة.",
       success: {
         title: "تم تأمين الطلب",
@@ -114,24 +114,24 @@ export const content = {
       title: "تنفيذ المحرك العصبي",
       subtitle: "شاهد كيف يقوم وكيل بمعالجة البيانات غير المهيكلة وتحويلها إلى معلومات قابلة للتنفيذ في الوقت الفعلي.",
       simulation: {
-        input_label: "أمر المستخدم",
-        input_text: "قم بتحليل تقرير_الربع_الثالث.pdf المرفق. استخرج مقاييس الإيرادات وحدد محركات النمو الرئيسية.",
+        input_label: "أمر النظام",
+        input_text: "./wakeel-cli analyze --file Q3_Financials.pdf --extract revenue_metrics",
         processing: [
-          "جاري تهيئة عقدة المحلل...",
-          "معالجة بيانات PDF غير المهيكلة...",
-          "تحديد الهياكل الجدولية...",
-          "مقارنة المعايير التاريخية...",
-          "إنشاء الملخص التنفيذي..."
+          "> جاري رفع الملف Q3_Financials.pdf...",
+          "> تهيئة التحليل الدلالي والتعرف الضوئي...",
+          "> استخراج الهياكل الجدولية...",
+          "> تحديد محركات النمو الرئيسية...",
+          "> إنشاء الملخص التنفيذي..."
         ],
-        output_label: "مخرجات الوكيل",
+        output_label: "مخرجات النظام",
         output_json: {
-          status: "نجاح",
+          status: "اكتملت المهمة ✓",
           latency: "١٤٢ ملي ثانية",
           data: {
             revenue: "٤.٢ مليون دولار (+١٢٪ ربع سنوي)",
             net_profit: "٨٤٠ ألف دولار (هامش ٢٠٪)",
             key_driver: "ارتفع اعتماد الشركات في منطقة الشرق الأوسط وشمال أفريقيا بنسبة ٤٥٪.",
-            action: "تم إنشاء التقرير وإرساله بالبريد الإلكتروني للمعنيين."
+            action: "تم إنشاء التقرير: /exports/summary_q3.pdf"
           }
         }
       }
