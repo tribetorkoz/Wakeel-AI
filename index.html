@@ -53,11 +53,11 @@
       /* Base Class for Reveal */
       .reveal-on-scroll {
         opacity: 0;
-        transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+        transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); /* Elegant easing */
         will-change: opacity, transform;
       }
 
-      /* Fade Up */
+      /* Fade Up - Default */
       .reveal-on-scroll.fade-up {
         transform: translateY(40px);
       }
@@ -94,37 +94,50 @@
       .delay-300 { transition-delay: 300ms; }
       .delay-500 { transition-delay: 500ms; }
 
+      /* --- Mobile Specific Strong Animations --- */
+      @media (max-width: 768px) {
+        .cursor-dot, .cursor-outline {
+          display: none;
+        }
+        body {
+            cursor: auto;
+        }
+
+        /* Stronger Vertical Movement on Mobile */
+        .reveal-on-scroll.fade-up {
+            transform: translateY(80px) scale(0.9); /* Deep slide + Scale down */
+        }
+        .reveal-on-scroll.fade-up.is-visible {
+            transform: translateY(0) scale(1);
+        }
+        
+        /* Faster, punchier transition on mobile */
+        .reveal-on-scroll {
+            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); 
+        }
+      }
+
       /* --- End Scroll Animations --- */
       
       /* Animations for Hero Section - CRITICAL FIX */
       @keyframes fade-in-up {
-        0% { opacity: 0; transform: translateY(20px); }
+        0% { opacity: 0; transform: translateY(30px); }
         100% { opacity: 1; transform: translateY(0); }
       }
       
       @keyframes fade-in-down {
-        0% { opacity: 0; transform: translateY(-20px); }
+        0% { opacity: 0; transform: translateY(-30px); }
         100% { opacity: 1; transform: translateY(0); }
       }
       
-      /* Toast Slide In */
-      @keyframes slide-in-bottom {
-        0% { transform: translateY(100%); opacity: 0; }
-        100% { transform: translateY(0); opacity: 1; }
-      }
-
       .animate-fade-in-up {
-        animation: fade-in-up 0.8s ease-out forwards;
+        animation: fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
       }
       
       .animate-fade-in-down {
-        animation: fade-in-down 0.5s ease-out forwards;
+        animation: fade-in-down 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
       }
       
-      .animate-slide-in-bottom {
-        animation: slide-in-bottom 0.5s ease-out forwards;
-      }
-
       /* Custom scrollbar */
       ::-webkit-scrollbar {
         width: 6px;
@@ -133,15 +146,6 @@
       ::-webkit-scrollbar-thumb {
         background: #3f3f46; 
         border-radius: 4px;
-      }
-
-      @media (max-width: 768px) {
-        .cursor-dot, .cursor-outline {
-          display: none;
-        }
-        body {
-            cursor: auto;
-        }
       }
     </style>
   <script type="importmap">
@@ -161,7 +165,7 @@
     <div id="cursor-outline" class="cursor-outline"></div>
     
     <div id="root"></div>
-<script type="module" src="/index.tsx"></script>
+
     <script>
         // Cursor Logic
         const cursorDot = document.getElementById("cursor-dot");
@@ -189,8 +193,8 @@
                     }
                 });
             }, {
-                threshold: 0.15, // Trigger when 15% visible
-                rootMargin: "0px 0px -50px 0px" // Trigger slightly before bottom
+                threshold: 0.1, // Trigger earlier on mobile
+                rootMargin: "0px 0px -10% 0px" // Trigger before hitting exact bottom
             });
 
             // Target elements added by React

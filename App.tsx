@@ -7,6 +7,7 @@ import ProductShowcase from './components/ProductShowcase';
 import Footer from './components/Footer';
 import NeuralBackground from './components/NeuralBackground';
 import ClickSound from './components/ClickSound';
+import MobileScrollEnhancer from './components/MobileScrollEnhancer';
 import { content } from './utils/content';
 
 // Context definition
@@ -36,12 +37,15 @@ function App() {
         {/* Mechanical UI Sounds */}
         <ClickSound />
         
+        {/* Mobile Physics Effects */}
+        <MobileScrollEnhancer />
+        
         {/* Interactive Neural Background */}
         <NeuralBackground />
         
         <Header />
         
-        <main className="flex-grow relative z-10">
+        <main className="flex-grow relative z-10 transition-transform duration-75 will-change-transform">
           <Hero />
           
           <div className="reveal-on-scroll fade-up">
