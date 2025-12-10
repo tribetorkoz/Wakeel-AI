@@ -2,9 +2,9 @@
 export const content = {
   en: {
     nav: {
-      solutions: "Capabilities",
-      showcase: "Live System",
-      cta: "Request Access"
+      solutions: "Solutions",
+      showcase: "Platform",
+      cta: "Start Pilot"
     },
     hero: {
       badge: "Enterprise Autonomous System",
@@ -13,70 +13,91 @@ export const content = {
       placeholder_name: "Full Name",
       placeholder_company: "Company Name",
       placeholder_email: "Work Email Address",
-      btn_join: "Request Priority Access",
+      btn_join: "Deploy Your First Agent",
       footer_text: "Trusted by early teams building with AI",
-      privacy: "Your data is secure. No public model training.",
+      privacy: "Bank-grade security. No public model training.",
+      no_card: "No credit card required",
       success: {
-        title: "Position Secured",
-        desc: "Your access request has been logged. We will contact you shortly for onboarding."
+        title: "Priority Access Secured",
+        desc: "Your pilot environment is being provisioned. We will contact you shortly."
       }
     },
     productShowcase: {
-      title: "Neural Engine Execution",
-      subtitle: "Watch Wakeel process unstructured data into actionable intelligence in real-time.",
+      title: "Real-Time Execution Engine",
+      subtitle: "Watch Wakeel process unstructured data into actionable revenue intelligence in seconds.",
       simulation: {
-        input_label: "Terminal Input",
-        input_text: "./wakeel-cli analyze --file Q3_Financials.pdf --extract revenue_metrics",
+        input_label: "Command Line",
+        input_text: "./wakeel run --task analyze_revenue --file Q3_Report.pdf",
         processing: [
-          "> Uploading Q3_Financials.pdf (1.2MB)...",
-          "> Initializing OCR & Semantic Parsing...",
-          "> Extracting tabular data structure...",
-          "> Identifying key growth drivers...",
-          "> Generating executive summary..."
+          "> System initialized. Connecting to Neural Grid...",
+          "> Uploading Q3_Report.pdf [Secure Tunnel]...",
+          "> Parsing unstructured tables and semantic layers...",
+          "> Identifying revenue leakage and growth opportunities...",
+          "> Compiling executive summary..."
         ],
-        output_label: "System Output",
+        output_label: "Agent Output",
         output_json: {
-          status: "Task Completed ✓",
-          latency: "142ms",
+          status: "Task Completed successfully",
+          latency: "0.4s",
           data: {
-            revenue: "$4.2M (+12% QoQ)",
-            net_profit: "$840k (20% margin)",
-            key_driver: "Enterprise adoption in MENA region increased by 45%.",
-            action: "Report generated: /exports/summary_q3.pdf"
+            revenue: "$4,250,000",
+            growth: "+12.5% QoQ",
+            insight: "Primary driver: Enterprise adoption in MENA region.",
+            action: "Action: Report sent to #executive-channel"
           }
         }
       }
     },
     features: {
       badge: "Capabilities",
-      title: "Intelligent Grid.",
-      subtitle: "A suite of specialized neural networks designed to handle complex business logic autonomously.",
+      title: "The Intelligent Grid.",
+      subtitle: "Stop answering the same questions. A suite of specialized neural networks designed to handle complex business logic autonomously.",
+      cta_banner: {
+        title: "Ready to automate your workforce?",
+        btn: "Start Free Pilot"
+      },
       cards: {
         support: {
-          title: "24/7 Neural Support",
-          desc: "Context-aware conversational agents that handle L1 & L2 support tickets instantly.",
-          stat1: "Latency",
-          stat2: "Availability"
+          title: "Zero Wait Time Support",
+          desc: "Resolve 80% of L1 & L2 tickets instantly. Our agents understand context, tone, and history.",
+          stat1: "Response",
+          stat2: "Resolution"
         },
         docs: {
           title: "Document Intelligence",
-          desc: "Parse, analyze, and extract structured data from unstructured documents (PDF, Word) at scale.",
-          stat: "Precision"
+          desc: "Turn PDFs and contracts into structured JSON data instantly.",
+          stat: "Accuracy"
         },
         content: {
           title: "Generative Marketing",
-          desc: "Produce high-conversion copy for ads, social media, and product listings aligned with brand guidelines."
+          desc: "Create on-brand SEO content, ads, and posts in seconds."
         },
         security: {
-          title: "Enterprise Security",
-          desc: "SOC2 compliant infrastructure with end-to-end encryption for all sensitive data processing."
+          title: "SOC2 Compliant",
+          desc: "Enterprise-grade encryption for all data processing."
         },
         agent: {
           title: "Deploy Custom Agent",
-          desc: "Pre-configured templates for Real Estate, E-commerce, and Legal sectors.",
+          desc: "Pre-built templates for Real Estate, Legal, and Finance.",
           cta: "Deploy Node"
         }
       }
+    },
+    faq: {
+      title: "Frequently Asked Questions",
+      items: [
+        { q: "Is my data used to train your models?", a: "No. We use zero-retention policies for enterprise clients. Your data remains yours." },
+        { q: "Can I integrate with my existing CRM?", a: "Yes, Wakeel connects with Salesforce, HubSpot, and Slack out of the box." },
+        { q: "What happens after I join the waitlist?", a: "You get priority access to our pilot program and a dedicated onboarding engineer." }
+      ]
+    },
+    pricing: {
+      title: "Simple, Transparent Pricing",
+      subtitle: "Start small and scale as your autonomous workforce grows.",
+      starter: { title: "Starter", price: "$299", desc: "For small teams automating support.", cta: "Join Waitlist", features: ["1 AI Agent", "1,000 conversations/mo", "Email Support"] },
+      growth: { title: "Growth", price: "$799", desc: "For scaling companies.", cta: "Join Waitlist", features: ["3 AI Agents", "Unlimited conversations", "Slack Integration", "Priority Support"] },
+      enterprise: { title: "Enterprise", price: "Custom", desc: "For large organizations.", cta: "Contact Sales", features: ["Unlimited Agents", "Custom LLM Fine-tuning", "SLA & Account Manager", "On-premise deployment"] },
+      guarantee: ["30-day money-back guarantee", "Cancel anytime", "Volume discounts available"]
     },
     footer: {
       desc: "Building the infrastructure for the autonomous economy.",
@@ -86,52 +107,53 @@ export const content = {
         legal: "Legal"
       },
       copyright: "© 2024 Wakeel AI Inc.",
-      made: "Engineered in Dubai"
+      made: "Engineered for Business"
     }
   },
   ar: {
     nav: {
-      solutions: "الإمكانيات",
-      showcase: "النظام الحي",
-      cta: "طلب الوصول"
+      solutions: "الحلول",
+      showcase: "المنصة",
+      cta: "ابدأ التجربة"
     },
     hero: {
       badge: "نظام أتمتة مؤسسي",
-      title: "وكلاء ذكاء اصطناعي لأتمتة أعمالك.",
-      subtitle: "حلول ذكاء اصطناعي مؤسسية لأتمتة خدمة العملاء وتحليل الوثائق وزيادة الإنتاجية.",
+      title: "وكلاء ذكاء اصطناعي لأتمتة أعمالك الحقيقية.",
+      subtitle: "دع وكيل يهتم بخدمة العملاء، وتحليل الوثائق، والمبيعات بينما تركز أنت على نمو شركتك.",
       placeholder_name: "الاسم الكامل",
-      placeholder_company: "اسم المؤسسة",
+      placeholder_company: "اسم الشركة",
       placeholder_email: "البريد الإلكتروني للعمل",
-      btn_join: "طلب وصول ذو أولوية",
-      footer_text: "موثوق به من قبل الفرق الرائدة",
-      privacy: "بياناتك آمنة. لا نستخدمها لتدريب النماذج العامة.",
+      btn_join: "انضم لـ ٢١٠+ شركة",
+      footer_text: "موثوق به من قبل الفرق التقنية الرائدة",
+      privacy: "أمان بنكي. لا نستخدم بياناتك لتدريب النماذج.",
+      no_card: "لا توجد بطاقة ائتمان مطلوبة",
       success: {
-        title: "تم تأمين الطلب",
-        desc: "تم تسجيل طلبك في النظام. سنتواصل معك قريباً لخطوات التفعيل."
+        title: "تم تأمين طلبك",
+        desc: "جاري تجهيز بيئة العمل الخاصة بك. سنتواصل معك فوراً."
       }
     },
     productShowcase: {
-      title: "تنفيذ المحرك العصبي",
-      subtitle: "شاهد كيف يقوم وكيل بمعالجة البيانات غير المهيكلة وتحويلها إلى معلومات قابلة للتنفيذ في الوقت الفعلي.",
+      title: "محرك التنفيذ الفوري",
+      subtitle: "شاهد وكيل يقوم بتحويل البيانات غير المهيكلة إلى معلومات أرباح قابلة للتنفيذ في ثوانٍ.",
       simulation: {
-        input_label: "أمر النظام",
-        input_text: "./wakeel-cli analyze --file Q3_Financials.pdf --extract revenue_metrics",
+        input_label: "موجه الأوامر",
+        input_text: "./wakeel run --task analyze_revenue --file Q3_Report.pdf",
         processing: [
-          "> جاري رفع الملف Q3_Financials.pdf...",
-          "> تهيئة التحليل الدلالي والتعرف الضوئي...",
-          "> استخراج الهياكل الجدولية...",
-          "> تحديد محركات النمو الرئيسية...",
-          "> إنشاء الملخص التنفيذي..."
+          "> تم بدء النظام. الاتصال بالشبكة العصبية...",
+          "> جاري رفع التقرير المالي [نفق آمن]...",
+          "> تحليل الجداول واستخراج البيانات الدلالية...",
+          "> تحديد فرص النمو وتقليل التكاليف...",
+          "> إنشاء الملخص التنفيذي للإدارة..."
         ],
-        output_label: "مخرجات النظام",
+        output_label: "مخرجات الوكيل",
         output_json: {
-          status: "اكتملت المهمة ✓",
-          latency: "١٤٢ ملي ثانية",
+          status: "اكتملت المهمة بنجاح",
+          latency: "٠.٤ ثانية",
           data: {
-            revenue: "٤.٢ مليون دولار (+١٢٪ ربع سنوي)",
-            net_profit: "٨٤٠ ألف دولار (هامش ٢٠٪)",
-            key_driver: "ارتفع اعتماد الشركات في منطقة الشرق الأوسط وشمال أفريقيا بنسبة ٤٥٪.",
-            action: "تم إنشاء التقرير: /exports/summary_q3.pdf"
+            revenue: "٤,٢٥٠,٠٠٠ دولار",
+            growth: "+١٢.٥٪ نمو",
+            insight: "المحرك الرئيسي: زيادة اعتماد الشركات الكبرى.",
+            action: "الإجراء: تم إرسال التقرير للمدير التنفيذي"
           }
         }
       }
@@ -139,33 +161,53 @@ export const content = {
     features: {
       badge: "الإمكانيات",
       title: "الشبكة الذكية.",
-      subtitle: "مجموعة من الشبكات العصبية المتخصصة المصممة للتعامل مع منطق الأعمال المعقد بشكل مستقل.",
+      subtitle: "توقف عن الإجابة على نفس الأسئلة. مجموعة من الشبكات العصبية المتخصصة المصممة للتعامل مع منطق الأعمال المعقد.",
+      cta_banner: {
+        title: "جاهز لأتمتة فريق عملك؟",
+        btn: "ابدأ النسخة التجريبة"
+      },
       cards: {
         support: {
-          title: "دعم عصبي ٢٤/٧",
-          desc: "وكلاء محادثة واعين بالسياق يعالجون تذاكر الدعم من المستوى الأول والثاني فوراً.",
-          stat1: "السرعة",
-          stat2: "التوافر"
+          title: "دعم فني بدون انتظار",
+          desc: "حل ٨٠٪ من التذاكر فوراً. وكلاؤنا يفهمون السياق والنبرة وتاريخ العميل.",
+          stat1: "الاستجابة",
+          stat2: "الحل"
         },
         docs: {
           title: "ذكاء الوثائق",
-          desc: "تحليل واستخراج البيانات المهيكلة من المستندات غير المهيكلة (PDF, Word) بدقة عالية.",
+          desc: "حول ملفات PDF والعقود إلى بيانات JSON مهيكلة فوراً.",
           stat: "الدقة"
         },
         content: {
           title: "التسويق التوليدي",
-          desc: "إنشاء نصوص إعلانية وتسويقية عالية التحويل متوافقة مع إرشادات العلامة التجارية."
+          desc: "أنشئ محتوى متوافق مع الهوية البصرية وإعلانات في ثوانٍ."
         },
         security: {
-          title: "أمان المؤسسات",
-          desc: "بنية تحتية متوافقة مع SOC2 مع تشفير شامل لجميع معالجة البيانات الحساسة."
+          title: "مطابق لمعايير SOC2",
+          desc: "تشفير من الدرجة المؤسسية لجميع عمليات معالجة البيانات."
         },
         agent: {
           title: "نشر وكيل مخصص",
-          desc: "قوالب مسبقة الإعداد لقطاعات العقارات، التجارة الإلكترونية، والقانون.",
+          desc: "قوالب جاهزة للعقارات، القانون، والمالية.",
           cta: "نشر الوكيل"
         }
       }
+    },
+    faq: {
+      title: "الأسئلة الشائعة",
+      items: [
+        { q: "هل تستخدمون بياناتي لتدريب النماذج؟", a: "لا. نتبع سياسات صارمة لعدم الاحتفاظ بالبيانات للعملاء المؤسسيين." },
+        { q: "هل يمكن الربط مع الأنظمة الحالية؟", a: "نعم، وكيل يتصل بـ Salesforce و HubSpot و Slack مباشرة." },
+        { q: "ماذا يحدث بعد الانضمام للقائمة؟", a: "ستحصل على أولوية الوصول للبرنامج التجريبي ومهندس مخصص لإعداد النظام." }
+      ]
+    },
+    pricing: {
+      title: "تسعير بسيط وشفاف",
+      subtitle: "ابدأ صغيراً وتوسع مع نمو فريقك المستقل.",
+      starter: { title: "البداية", price: "٢٩٩$", desc: "للفرق الصغيرة.", cta: "انضم للقائمة", features: ["١ وكيل ذكي", "١٠٠٠ محادثة/شهر", "دعم عبر البريد"] },
+      growth: { title: "النمو", price: "٧٩٩$", desc: "للشركات المتوسعة.", cta: "انضم للقائمة", features: ["٣ وكلاء ذكاء اصطناعي", "محادثات غير محدودة", "ربط مع Slack", "دعم ذو أولوية"] },
+      enterprise: { title: "المؤسسات", price: "مخصص", desc: "للمنظمات الكبيرة.", cta: "تواصل مع المبيعات", features: ["وكلاء غير محدودين", "تخصيص النماذج (Fine-tuning)", "مدير حساب", "نشر محلي (On-premise)"] },
+      guarantee: ["ضمان استرداد الأموال ٣٠ يوماً", "إلغاء في أي وقت", "خصومات للأحجام الكبيرة"]
     },
     footer: {
       desc: "بناء البنية التحتية للاقتصاد المستقل.",
@@ -175,7 +217,7 @@ export const content = {
         legal: "قانوني"
       },
       copyright: "© 2024 وكيل للذكاء الاصطناعي.",
-      made: "هندسة في دبي"
+      made: "هندسة للأعمال"
     }
   }
 };

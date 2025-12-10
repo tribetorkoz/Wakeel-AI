@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Terminal, FileText, Check, Cpu, ArrowRight, Loader2, FileCheck } from 'lucide-react';
+import { Terminal, Check, Cpu, Loader2, FileCheck, FileText } from 'lucide-react';
 import { useLanguage } from '../App';
 
 const ProductShowcase: React.FC = () => {
@@ -57,7 +57,7 @@ const ProductShowcase: React.FC = () => {
       if (typedText.length < targetText.length) {
         const timeout = setTimeout(() => {
           setTypedText(targetText.slice(0, typedText.length + 1));
-        }, 25); // Faster typing
+        }, 35); // Realistic typing speed
         return () => clearTimeout(timeout);
       } else {
         const timer = setTimeout(() => setStep(2), 500);
@@ -81,14 +81,14 @@ const ProductShowcase: React.FC = () => {
 
 
   return (
-    <section ref={sectionRef} id="showcase" className="py-32 bg-zinc-950 border-t border-white/5 relative overflow-hidden">
+    <section ref={sectionRef} id="showcase" className="py-24 bg-zinc-950 border-t border-white/5 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Header */}
         <div className="text-center mb-16 md:mb-20">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 text-indigo-400 text-xs font-mono mb-4 border border-indigo-500/20">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-mono mb-4 border border-emerald-500/20">
             <Cpu size={12} />
-            <span>Core Architecture</span>
+            <span>{t.hero.badge}</span>
           </div>
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 tracking-tight">
             {t.productShowcase.title}
@@ -100,7 +100,7 @@ const ProductShowcase: React.FC = () => {
 
         {/* The Terminal Interface */}
         <div className="max-w-4xl mx-auto">
-          <div className="rounded-xl bg-[#0d0d0d] border border-zinc-800 shadow-2xl overflow-hidden ring-1 ring-white/5 transform transition-transform hover:scale-[1.01] duration-700">
+          <div className="rounded-xl bg-[#0d0d0d] border border-zinc-800 shadow-2xl overflow-hidden ring-1 ring-white/5 transform transition-transform hover:scale-[1.005] duration-700">
             
             {/* Terminal Title Bar */}
             <div className="bg-[#1a1a1a] border-b border-zinc-800 px-4 py-3 flex items-center justify-between">
@@ -111,7 +111,7 @@ const ProductShowcase: React.FC = () => {
               </div>
               <div className="text-xs text-zinc-500 font-mono opacity-50 flex items-center gap-2">
                 <Terminal size={10} />
-                wakeel_agent — v2.4
+                wakeel_agent — zsh
               </div>
               <div className="w-12"></div>
             </div>
@@ -136,10 +136,9 @@ const ProductShowcase: React.FC = () => {
                 {/* Processing Logs */}
                 <div className="flex-grow space-y-3 mb-8 overflow-hidden">
                     {logLines.map((log, i) => (
-                        <div key={i} className="flex items-center gap-3 text-zinc-400 text-xs md:text-sm animate-fade-in-up">
-                            <span className="text-blue-500">ℹ</span>
+                        <div key={i} className="flex items-center gap-3 text-zinc-300 text-xs md:text-sm animate-fade-in-up">
+                            {i < logLines.length - 1 ? <Check size={12} className="text-emerald-500" /> : <Loader2 size={12} className="animate-spin text-zinc-500" />}
                             <span className="font-light">{log}</span>
-                            {i === logLines.length - 1 && step === 2 && <Loader2 size={12} className="animate-spin ml-2 text-zinc-600" />}
                         </div>
                     ))}
                 </div>
@@ -169,18 +168,18 @@ const ProductShowcase: React.FC = () => {
                                      <div className="text-white text-xl font-bold font-sans tracking-tight">{t.productShowcase.simulation.output_json.data.revenue}</div>
                                  </div>
                                  <div>
-                                     <div className="text-[10px] text-zinc-500 uppercase tracking-wider mb-1">Net Profit</div>
-                                     <div className="text-white text-xl font-bold font-sans tracking-tight">{t.productShowcase.simulation.output_json.data.net_profit}</div>
+                                     <div className="text-[10px] text-zinc-500 uppercase tracking-wider mb-1">Growth</div>
+                                     <div className="text-emerald-400 text-xl font-bold font-sans tracking-tight">{t.productShowcase.simulation.output_json.data.growth}</div>
                                  </div>
-                                 <div className="md:col-span-2">
-                                     <div className="text-[10px] text-zinc-500 uppercase tracking-wider mb-1">Key Insight</div>
-                                     <div className="text-zinc-300 leading-snug font-sans">{t.productShowcase.simulation.output_json.data.key_driver}</div>
+                                 <div className="md:col-span-2 bg-zinc-900/50 p-3 rounded border border-white/5">
+                                     <div className="text-[10px] text-zinc-500 uppercase tracking-wider mb-1">AI Insight</div>
+                                     <div className="text-zinc-300 leading-snug font-sans text-sm">{t.productShowcase.simulation.output_json.data.insight}</div>
                                  </div>
                              </div>
 
                              <div className="mt-5 pt-4 border-t border-zinc-800 flex items-center gap-3 text-xs text-zinc-400">
                                  <FileCheck size={14} className="text-blue-500" />
-                                 <span className="font-mono">{t.productShowcase.simulation.output_json.data.action}</span>
+                                 <span className="font-mono text-emerald-500">{t.productShowcase.simulation.output_json.data.action}</span>
                              </div>
                          </div>
                      </div>

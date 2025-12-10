@@ -72,7 +72,7 @@ const Header: React.FC = () => {
 
           <button 
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="ml-2 bg-white text-black px-5 py-2 rounded-full text-sm font-bold hover:bg-zinc-200 transition-all flex items-center gap-2 active:scale-95"
+            className="ml-2 bg-white text-black px-5 py-2 rounded-full text-sm font-bold hover:bg-zinc-200 transition-all flex items-center gap-2 active:scale-95 shadow-lg shadow-white/5"
           >
             {t.nav.cta}
             <ArrowRight size={14} className={isRtl ? 'rotate-180' : ''} />
