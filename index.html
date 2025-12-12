@@ -20,32 +20,34 @@
         font-family: 'Space Mono', 'IBM Plex Sans Arabic', monospace;
       }
 
-      /* Custom Cursor */
-      .cursor-dot,
-      .cursor-outline {
+      /* --- Professional Glowing Cursor --- */
+      .custom-cursor {
         position: fixed;
         top: 0;
         left: 0;
-        transform: translate(-50%, -50%);
-        border-radius: 50%;
         z-index: 10000;
         pointer-events: none;
+        will-change: transform;
+        /* Default visible, hidden on mobile via media query */
+        display: block; 
+        mix-blend-mode: screen;
       }
-      .cursor-dot {
-        width: 8px;
-        height: 8px;
-        background-color: white;
+
+      .cursor-svg {
+        width: 45px;  /* Significantly Larger */
+        height: 45px; /* Significantly Larger */
+        fill: rgba(99, 102, 241, 0.2); /* Indigo-500 with transparency for body */
+        stroke: #818cf8; /* Lighter Indigo Stroke */
+        stroke-width: 1.5px;
+        /* Enhanced Glow Effect */
+        filter: drop-shadow(0 0 10px rgba(99, 102, 241, 0.6)) drop-shadow(0 0 20px rgba(168, 85, 247, 0.4));
+        transition: transform 0.1s ease-out; /* Faster scale transition */
       }
-      .cursor-outline {
-        width: 40px;
-        height: 40px;
-        border: 1px solid rgba(255, 255, 255, 0.5);
-        transition: width 0.2s, height 0.2s, background-color 0.2s;
-      }
-      
-      body:hover .cursor-outline {
-        width: 40px;
-        height: 40px;
+
+      /* Hover State: Sharper and slightly smaller for precision feel */
+      body:active .cursor-svg {
+        transform: scale(0.9);
+        fill: rgba(99, 102, 241, 0.4);
       }
 
       /* --- Scroll Animations --- */
@@ -96,11 +98,11 @@
 
       /* --- Mobile Specific Strong Animations --- */
       @media (max-width: 768px) {
-        .cursor-dot, .cursor-outline {
-          display: none;
+        .custom-cursor {
+          display: none; /* Hide custom cursor on touch devices */
         }
         body {
-            cursor: auto;
+            cursor: auto; /* Restore default touch behavior */
         }
 
         /* Stronger Vertical Movement on Mobile */
@@ -161,28 +163,52 @@
 </script>
 </head>
   <body class="bg-black text-zinc-100 antialiased selection:bg-indigo-500/30 selection:text-white">
-    <div id="cursor-dot" class="cursor-dot"></div>
-    <div id="cursor-outline" class="cursor-outline"></div>
+    <!-- SVG Custom Cursor -->
+    <div id="custom-cursor" class="custom-cursor">
+      <svg class="cursor-svg" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+        <!-- Abstract Large Arrow Shape: "The Stealth Shard" -->
+        <!-- Points to top-left (0,0) accurately -->
+        <path d="M0 0 L36 12 L20 20 L12 36 L0 0 Z" stroke-linejoin="round" />
+      </svg>
+    </div>
     
     <div id="root"></div>
-<script type="module" src="/index.tsx"></script>
+
     <script>
-        // Cursor Logic
-        const cursorDot = document.getElementById("cursor-dot");
-        const cursorOutline = document.getElementById("cursor-outline");
+        // Advanced Cursor Logic
+        const cursor = document.getElementById("custom-cursor");
+        
+        // State for smooth interpolation
+        let mouseX = -100; // Start off screen
+        let mouseY = -100;
+        let cursorX = -100;
+        let cursorY = -100;
 
-        window.addEventListener("mousemove", (e) => {
-            const posX = e.clientX;
-            const posY = e.clientY;
-
-            cursorDot.style.left = `${posX}px`;
-            cursorDot.style.top = `${posY}px`;
-
-            cursorOutline.animate({
-                left: `${posX}px`,
-                top: `${posY}px`
-            }, { duration: 500, fill: "forwards" });
+        document.addEventListener("mousemove", (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
         });
+
+        function animateCursor() {
+            // Smooth lerp (Linear Interpolation) for professional feel
+            // Speed factor: 0.35 -> Higher is faster/easier to move, Lower is heavier/smoother.
+            // 0.35 provides a very responsive "gaming mouse" feel while keeping it smooth.
+            const speed = 0.35; 
+            
+            cursorX += (mouseX - cursorX) * speed;
+            cursorY += (mouseY - cursorY) * speed;
+
+            if (cursor) {
+                // No offset needed as the SVG path starts at 0,0
+                // Use translate3d for GPU acceleration
+                cursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0)`;
+            }
+
+            requestAnimationFrame(animateCursor);
+        }
+
+        // Start animation loop
+        animateCursor();
 
         // Advanced Scroll Reveal Logic
         document.addEventListener('DOMContentLoaded', () => {

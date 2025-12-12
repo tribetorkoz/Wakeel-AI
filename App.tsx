@@ -6,10 +6,11 @@ import Features from './components/Features';
 import ProductShowcase from './components/ProductShowcase';
 import HowItWorks from './components/HowItWorks';
 import Testimonials from './components/Testimonials';
-import Footer from './components/Footer';
-import NeuralBackground from './components/NeuralBackground';
+import BigLogoFooter from './components/BigLogoFooter';
+import GlobalGrid from './components/GlobalGrid';
 import ClickSound from './components/ClickSound';
 import MobileScrollEnhancer from './components/MobileScrollEnhancer';
+import DeviceNotification from './components/DeviceNotification';
 import { content } from './utils/content';
 
 // Context definition
@@ -42,8 +43,11 @@ function App() {
         {/* Mobile Physics Effects */}
         <MobileScrollEnhancer />
         
-        {/* Interactive Neural Background */}
-        <NeuralBackground />
+        {/* Device Detection Notification */}
+        <DeviceNotification />
+        
+        {/* Background Layers */}
+        <GlobalGrid />
         
         <Header />
         
@@ -65,9 +69,11 @@ function App() {
           <div className="reveal-on-scroll fade-up">
             <Testimonials />
           </div>
+
+          <div className="reveal-on-scroll fade-up">
+            <BigLogoFooter />
+          </div>
         </main>
-        
-        <Footer />
         
       </div>
     </LanguageContext.Provider>

@@ -85,7 +85,10 @@ export const content = {
             vendor: "Acme Corp",
             amount: "$4,250.00",
             due_date: "2024-12-01",
-            action: "Exported to QuickBooks"
+            action: "Exported to QuickBooks",
+            revenue: "$1.2M",
+            growth: "+15%",
+            insight: "Spending is 12% lower than Q3 average."
           }
         }
       }
@@ -123,6 +126,25 @@ export const content = {
           desc: "Build agents for specific tasks: HR onboarding, Legal review, and more.",
           cta: "Build Agent"
         }
+      }
+    },
+    demo: {
+      badge: "Free Tool",
+      title: "AI Creative Studio",
+      subtitle: "Experience the power of Wakeel. Generate professional marketing copy in seconds for free.",
+      input_label: "What do you want to create?",
+      output_label: "AI Output",
+      placeholder: "e.g., A launch post for a new coffee brand focusing on sustainability...",
+      processing: "Generating creative concepts...",
+      generate: "Generate Magic",
+      ready: "Ready to create.",
+      waiting: "Enter a topic to start.",
+      copy: "Copy Text",
+      inspire: "Inspire Me ✨",
+      options: {
+        post: "LinkedIn Post",
+        desc: "Product Desc",
+        ad: "Google Ad"
       }
     },
     faq: {
@@ -237,7 +259,10 @@ export const content = {
             vendor: "شركة القمة",
             amount: "٤,٢٥٠ ريال",
             due_date: "٢٠٢٤-١٢-٠١",
-            action: "تم التصدير للنظام المحاسبي"
+            action: "تم التصدير للنظام المحاسبي",
+            revenue: "١.٢ مليون",
+            growth: "+١٥٪",
+            insight: "الإنفاق أقل بنسبة ١٢٪ من متوسط الربع الثالث."
           }
         }
       }
@@ -275,6 +300,25 @@ export const content = {
           desc: "ابنِ وكلاء لمهام محددة: التوظيف، المراجعة القانونية، والمزيد.",
           cta: "بناء وكيل"
         }
+      }
+    },
+    demo: {
+      badge: "أداة مجانية",
+      title: "استوديو الإبداع الذكي",
+      subtitle: "جرب قوة وكيل بنفسك. أنشئ محتوى تسويقي احترافي في ثوانٍ مجاناً.",
+      input_label: "ماذا تريد أن تنشئ؟",
+      output_label: "مخرجات الذكاء الاصطناعي",
+      placeholder: "مثال: منشور لإطلاق علامة تجارية جديدة للقهوة تركز على الاستدامة...",
+      processing: "جاري توليد الأفكار الإبداعية...",
+      generate: "اصنع السحر",
+      ready: "جاهز للإبداع.",
+      waiting: "أدخل موضوعاً للبدء.",
+      copy: "نسخ النص",
+      inspire: "ألهمني ✨",
+      options: {
+        post: "منشور LinkedIn",
+        desc: "وصف منتج",
+        ad: "إعلان جوجل"
       }
     },
     faq: {

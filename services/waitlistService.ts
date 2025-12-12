@@ -36,38 +36,87 @@ interface WaitlistData {
   company: string;
 }
 
+interface VisitorData {
+  deviceType: string;
+  os: string;
+  browser: string;
+}
+
+// Helper to get public IP
+const getPublicIP = async (): Promise<string> => {
+  try {
+    const response = await fetch('https://api.ipify.org?format=json');
+    const data = await response.json();
+    return data.ip;
+  } catch (error) {
+    return "Unknown IP";
+  }
+};
+
 export const submitToWaitlist = async (data: WaitlistData): Promise<{ success: boolean; message?: string }> => {
   try {
     console.log(`Submitting data:`, { ...data, timestamp: new Date().toISOString() });
 
-    // If no URL is configured, we simulate a successful submission for demonstration
     if (!DATABASE_URL) {
-      console.warn("⚠️ No Database URL configured. Simulating success. Check services/waitlistService.ts");
-      await new Promise(resolve => setTimeout(resolve, 1500)); // Fake network delay
+      console.warn("⚠️ No Database URL configured. Simulating success.");
+      await new Promise(resolve => setTimeout(resolve, 1500)); 
       return { success: true };
     }
 
-    // Prepare data for submission
     const formData = new FormData();
     formData.append('email', data.email);
     formData.append('name', data.name);
     formData.append('company', data.company);
-    formData.append('source', 'landing_page');
-    formData.append('created_at', new Date().toISOString());
+    formData.append('source', 'landing_page_form');
 
-    // Send data to the external database (Google Sheets)
-    // mode: 'no-cors' is essential for Google Scripts to work from a static website
     await fetch(DATABASE_URL, {
       method: 'POST',
       body: formData,
       mode: 'no-cors'
     });
 
-    // Since 'no-cors' returns an opaque response, we assume success if no error was thrown.
     return { success: true };
 
   } catch (error) {
     console.error("Submission Error:", error);
     return { success: false, message: "Network error occurred." };
+  }
+};
+
+/**
+ * Logs visitor device info AND IP ADDRESS automatically without user input.
+ * Maps device info to existing sheet columns:
+ * Name -> "Visitor: [DeviceType]"
+ * Company -> "IP: [IP_ADDRESS] | [OS]"
+ * Email -> "Auto-Log"
+ */
+export const logVisitorEntry = async (data: VisitorData): Promise<void> => {
+  try {
+    if (!DATABASE_URL) return;
+
+    // 1. Fetch IP Address
+    const ipAddress = await getPublicIP();
+
+    // 2. Prepare Data
+    const formData = new FormData();
+    
+    // Mapping tech data to the existing sheet columns
+    formData.append('name', `Visitor: ${data.deviceType}`); 
+    // We add the IP to the Company column so it is easily visible in the sheet
+    formData.append('company', `IP: ${ipAddress} | OS: ${data.os} | Browser: ${data.browser}`);
+    formData.append('email', 'Auto-Log (Traffic)'); 
+    
+    // 3. Send silently
+    await fetch(DATABASE_URL, {
+      method: 'POST',
+      body: formData,
+      mode: 'no-cors'
+    });
+    
+    console.log("Visitor device & IP logged securely.");
+
+  } catch (error) {
+    // Fail silently for background logging
+    console.warn("Could not log visitor:", error);
   }
 };
