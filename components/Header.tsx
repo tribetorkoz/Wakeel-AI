@@ -1,13 +1,22 @@
 
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Bot, ArrowRight } from 'lucide-react';
+import { Menu, X, Bot, ArrowRight, Globe } from 'lucide-react';
 import { useLanguage } from '../App';
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { t, toggleLanguage, lang } = useLanguage();
+  const [showLangMenu, setShowLangMenu] = useState(false);
+  const { t, lang, setSpecificLanguage } = useLanguage();
   const isRtl = lang === 'ar';
+
+  const languages = [
+      { code: 'en', label: 'English' },
+      { code: 'ar', label: 'العربية' },
+      { code: 'fr', label: 'Français' },
+      { code: 'es', label: 'Español' },
+      { code: 'de', label: 'Deutsch' },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -54,7 +63,7 @@ const Header: React.FC = () => {
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-1">
           <button onClick={() => scrollTo('how-it-works')} className="px-4 py-2 text-sm font-medium text-zinc-400 hover:text-white transition-colors rounded-full hover:bg-white/5">
-             {lang === 'ar' ? 'كيف نعمل' : 'How it Works'}
+             {lang === 'ar' ? 'كيف نعمل' : (lang === 'fr' ? 'Comment ça marche' : 'How it Works')}
           </button>
           <button onClick={() => scrollTo('showcase')} className="px-4 py-2 text-sm font-medium text-zinc-400 hover:text-white transition-colors rounded-full hover:bg-white/5">
             {t.nav.showcase}
@@ -65,13 +74,30 @@ const Header: React.FC = () => {
           
           <div className="w-[1px] h-4 bg-white/10 mx-2"></div>
 
-          {/* Language Toggle */}
-          <button 
-            onClick={toggleLanguage}
-            className="px-3 py-2 text-zinc-400 hover:text-white transition-colors text-xs font-bold uppercase tracking-wider rounded-full hover:bg-white/5"
-          >
-            {lang === 'en' ? 'AR' : 'EN'}
-          </button>
+          {/* Language Dropdown */}
+          <div className="relative">
+              <button 
+                onClick={() => setShowLangMenu(!showLangMenu)}
+                className="px-3 py-2 text-zinc-400 hover:text-white transition-colors text-xs font-bold uppercase tracking-wider rounded-full hover:bg-white/5 flex items-center gap-1"
+              >
+                <Globe size={14} />
+                {lang.toUpperCase()}
+              </button>
+              
+              {showLangMenu && (
+                  <div className="absolute top-full mt-2 w-32 bg-zinc-900 border border-white/10 rounded-xl overflow-hidden shadow-xl flex flex-col p-1 animate-fade-in-up">
+                      {languages.map((l) => (
+                          <button
+                            key={l.code}
+                            onClick={() => { setSpecificLanguage(l.code); setShowLangMenu(false); }}
+                            className={`px-3 py-2 text-xs font-medium text-start rounded-lg hover:bg-white/10 transition-colors ${lang === l.code ? 'text-white bg-white/5' : 'text-zinc-400'}`}
+                          >
+                              {l.label}
+                          </button>
+                      ))}
+                  </div>
+              )}
+          </div>
 
           <button 
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
@@ -84,12 +110,12 @@ const Header: React.FC = () => {
 
         {/* Mobile Menu Button */}
         <div className="flex md:hidden gap-3 items-center">
-           <button 
-            onClick={toggleLanguage}
-            className="flex items-center gap-1 text-zinc-400 hover:text-white transition-colors text-xs font-bold uppercase px-2 py-1"
-          >
-            {lang === 'en' ? 'AR' : 'EN'}
-          </button>
+           <button
+             onClick={() => setShowLangMenu(!showLangMenu)}
+             className="flex items-center gap-1 text-zinc-400 hover:text-white transition-colors text-xs font-bold uppercase px-2 py-1"
+           >
+             {lang.toUpperCase()}
+           </button>
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="inline-flex items-center justify-center p-2 rounded-xl bg-zinc-800/50 text-zinc-200 hover:text-white focus:outline-none border border-white/5"
@@ -100,6 +126,26 @@ const Header: React.FC = () => {
       </div>
     </nav>
 
+    {/* Mobile Language Menu Overlay */}
+    {showLangMenu && (
+        <div className="fixed inset-0 z-[60] bg-black/80 backdrop-blur-sm flex items-center justify-center p-8 md:hidden" onClick={() => setShowLangMenu(false)}>
+            <div className="bg-zinc-900 border border-white/10 rounded-2xl w-full max-w-xs overflow-hidden">
+                <div className="p-4 border-b border-white/5 text-center font-bold text-white">Select Language</div>
+                <div className="flex flex-col p-2">
+                    {languages.map((l) => (
+                        <button
+                          key={l.code}
+                          onClick={(e) => { e.stopPropagation(); setSpecificLanguage(l.code); setShowLangMenu(false); }}
+                          className={`px-4 py-4 text-sm font-medium text-center rounded-xl hover:bg-white/10 transition-colors ${lang === l.code ? 'bg-indigo-600/20 text-indigo-400 border border-indigo-500/20' : 'text-zinc-400'}`}
+                        >
+                            {l.label}
+                        </button>
+                    ))}
+                </div>
+            </div>
+        </div>
+    )}
+
     {/* Mobile Menu Overlay */}
     {isMenuOpen && (
         <div className="fixed inset-0 z-40 bg-black/80 backdrop-blur-md md:hidden flex items-start justify-center pt-24" onClick={() => setIsMenuOpen(false)}>
@@ -109,7 +155,7 @@ const Header: React.FC = () => {
             >
               <div className="flex flex-col">
                 <button onClick={() => scrollTo('how-it-works')} className="w-full text-start px-6 py-4 rounded-2xl text-lg font-medium text-zinc-300 hover:bg-zinc-800 hover:text-white transition-colors">
-                  {lang === 'ar' ? 'كيف نعمل' : 'How it Works'}
+                  {lang === 'ar' ? 'كيف نعمل' : (lang === 'fr' ? 'Comment ça marche' : 'How it Works')}
                 </button>
                 <button onClick={() => scrollTo('showcase')} className="w-full text-start px-6 py-4 rounded-2xl text-lg font-medium text-zinc-300 hover:bg-zinc-800 hover:text-white transition-colors">
                   {t.nav.showcase}

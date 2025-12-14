@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wakeel AI Notification</title>
+    <!-- استيراد الخطوط -->
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Reset styles */
+        body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+        table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+        img { -ms-interpolation-mode: bicubic; }
+        
+        /* General */
+        body { margin: 0; padding: 0; width: 100% !important; background-color: #000000; font-family: 'IBM Plex Sans Arabic', 'Inter', sans-serif; }
+        
+        /* Client-specific fixes */
+        .ExternalClass { width: 100%; }
+        .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div { line-height: 100%; }
+        
+        /* Buttons */
+        .button:hover { background-color: #4338ca !important; box-shadow: 0 0 15px rgba(99, 102, 241, 0.5); }
+        
+        /* Dark Mode Support */
+        @media (prefers-color-scheme: dark) {
+            .body-bg { background-color: #000000 !important; }
+            .card-bg { background-color: #09090b !important; border: 1px solid #27272a !important; }
+            .text-white { color: #ffffff !important; }
+            .text-gray { color: #a1a1aa !important; }
+        }
+    </style>
+</head>
+<body style="margin: 0; padding: 0; background-color: #000000; color: #ffffff;">
+
+    <!-- Main Container -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #000000;">
+        <tr>
+            <td align="center" style="padding: 40px 10px;">
+                
+                <!-- Logo Section -->
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
+                    <tr>
+                        <td align="center" style="padding-bottom: 30px;">
+                            <!-- CSS-only Logo Simulation -->
+                            <div style="display: inline-block; vertical-align: middle;">
+                                <table border="0" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <td style="background-color: #ffffff; width: 32px; height: 32px; border-radius: 8px; text-align: center; vertical-align: middle; box-shadow: 0 4px 12px rgba(255,255,255,0.1);">
+                                            <!-- Simple SVG Bot Icon Fallback or Text -->
+                                            <span style="font-size: 18px; line-height: 32px;">🤖</span>
+                                        </td>
+                                        <td style="padding-right: 12px; font-family: 'IBM Plex Sans Arabic', sans-serif; font-size: 20px; font-weight: 700; color: #ffffff; letter-spacing: -0.5px;">
+                                            وكيل <span style="color: #6366f1;">الذكـي</span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+
+                <!-- Main Card -->
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; background-color: #09090b; border: 1px solid #27272a; border-radius: 16px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.4);">
+                    
+                    <!-- Decorative Top Gradient Line -->
+                    <tr>
+                        <td style="height: 4px; background: linear-gradient(90deg, #6366f1 0%, #a855f7 100%);"></td>
+                    </tr>
+
+                    <!-- Card Content -->
+                    <tr>
+                        <td style="padding: 40px 30px; text-align: right; direction: rtl;">
+                            
+                            <!-- Badge -->
+                            <div style="margin-bottom: 20px;">
+                                <span style="background-color: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.2); color: #34d399; padding: 4px 12px; border-radius: 99px; font-size: 12px; font-weight: 600; font-family: 'IBM Plex Sans Arabic', sans-serif;">
+                                    نظام جديد
+                                </span>
+                            </div>
+
+                            <!-- Greeting -->
+                            <h1 style="margin: 0 0 16px 0; color: #ffffff; font-size: 24px; font-weight: 700; line-height: 1.4; font-family: 'IBM Plex Sans Arabic', sans-serif;">
+                                مرحباً، {{name}}
+                            </h1>
+
+                            <!-- Body Text -->
+                            <p style="margin: 0 0 24px 0; color: #a1a1aa; font-size: 16px; line-height: 1.6; font-family: 'IBM Plex Sans Arabic', sans-serif;">
+                                لقد تلقينا طلبك بنجاح. يقوم نظام <strong style="color: #ffffff;">Wakeel AI</strong> الآن بمعالجة البيانات الخاصة بك وسنقوم بالرد عليك في أقرب وقت ممكن.
+                            </p>
+
+                            <!-- Dynamic Message Box -->
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #000000; border: 1px solid #27272a; border-radius: 12px; margin-bottom: 30px;">
+                                <tr>
+                                    <td style="padding: 20px;">
+                                        <p style="margin: 0 0 8px 0; color: #6366f1; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-family: 'Inter', sans-serif;">
+                                            SUBJECT / الموضوع
+                                        </p>
+                                        <p style="margin: 0; color: #ffffff; font-size: 16px; font-weight: 500; font-family: 'IBM Plex Sans Arabic', sans-serif;">
+                                            {{title}}
+                                        </p>
+                                        <div style="height: 1px; background-color: #27272a; margin: 12px 0;"></div>
+                                        <p style="margin: 0; color: #d4d4d8; font-size: 14px; line-height: 1.6; font-family: 'IBM Plex Sans Arabic', sans-serif;">
+                                            {{message}}
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <!-- CTA Button -->
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                <tr>
+                                    <td align="center">
+                                        <a href="https://wakeel.ai" target="_blank" style="display: inline-block; padding: 14px 32px; background-color: #4f46e5; color: #ffffff; font-family: 'IBM Plex Sans Arabic', sans-serif; font-size: 16px; font-weight: 600; text-decoration: none; border-radius: 12px; transition: all 0.3s ease;">
+                                            الانتقال إلى لوحة التحكم
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </td>
+                    </tr>
+                    
+                    <!-- Footer Inside Card -->
+                    <tr>
+                        <td style="background-color: #000000; border-top: 1px solid #27272a; padding: 20px 30px; text-align: center;">
+                            <p style="margin: 0; color: #52525b; font-size: 12px; font-family: 'IBM Plex Sans Arabic', sans-serif;">
+                                © 2024 Wakeel AI Inc. جميع الحقوق محفوظة.
+                            </p>
+                            <div style="margin-top: 10px;">
+                                <span style="display: inline-block; width: 6px; height: 6px; background-color: #10b981; border-radius: 50%; margin-left: 6px;"></span>
+                                <span style="color: #71717a; font-size: 11px; font-family: 'Inter', sans-serif; letter-spacing: 0.5px;">SYSTEM OPERATIONAL</span>
+                            </div>
+                        </td>
+                    </tr>
+
+                </table>
+
+                <!-- Unsubscribe / Legal -->
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; margin-top: 20px;">
+                    <tr>
+                        <td align="center" style="color: #52525b; font-size: 12px; font-family: 'IBM Plex Sans Arabic', sans-serif;">
+                            <a href="#" style="color: #52525b; text-decoration: underline; margin: 0 10px;">سياسة الخصوصية</a>
+                            |
+                            <a href="#" style="color: #52525b; text-decoration: underline; margin: 0 10px;">إلغاء الاشتراك</a>
+                        </td>
+                    </tr>
+                </table>
+
+            </td>
+        </tr>
+    </table>
+
+</body>
+</html>

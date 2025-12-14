@@ -1,48 +1,105 @@
-import { GoogleGenAI } from "@google/genai";
+
+import { GoogleGenAI, FunctionDeclaration, Tool, FunctionCall } from "@google/genai";
 
 const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
-export const generateMarketingContent = async (productName: string, type: 'post' | 'desc' | 'ad'): Promise<string> => {
+export interface ChatMessage {
+  role: 'user' | 'model';
+  content: string;
+}
+
+export interface AgentResponse {
+  text?: string;
+  functionCalls?: FunctionCall[];
+}
+
+export const generateAgentPersona = async (role: string, company: string): Promise<string> => {
   try {
-    let prompt = "";
+    const prompt = `Create a system instruction for an AI agent.
+    Role: ${role}
+    Company: ${company}
     
-    switch (type) {
-      case 'post':
-        prompt = `Write a high-impact LinkedIn post for a B2B audience about: "${productName}". 
-        Requirements:
-        - Use short, punchy sentences.
-        - Focus on the problem it solves.
-        - No cheesy emojis (keep it minimal).
-        - End with a thought-provoking question.`;
-        break;
-      case 'desc':
-        prompt = `Write a premium product description for "${productName}". 
-        Requirements:
-        - Style: Apple-like, minimalist, confident.
-        - Focus on: Efficiency, Design, Outcome.
-        - Structure: One bold headline, followed by a short paragraph.`;
-        break;
-      case 'ad':
-        prompt = `Write a Google Search Ad copy for "${productName}".
-        Requirements:
-        - Headline 1: Benefit focused.
-        - Headline 2: Feature focused.
-        - Description: Clear call to action. 90 characters max.`;
-        break;
-    }
+    The instruction should be professional, concise, and tailored to the role.
+    It should define how the agent behaves and what its responsibilities are.
+    Return ONLY the system instruction text.`;
+
+    const response = await ai.models.generateContent({
+        model: 'gemini-2.5-flash',
+        contents: prompt,
+    });
+
+    return response.text || `You are a helpful AI agent acting as a ${role} for ${company}.`;
+  } catch (error) {
+    console.error("Error generating persona:", error);
+    return `You are a helpful AI agent acting as a ${role} for ${company}.`;
+  }
+};
+
+export const chatWithAgent = async (
+  message: string, 
+  systemInstruction: string,
+  history: ChatMessage[],
+  contextData?: string,
+  tools?: FunctionDeclaration[]
+): Promise<AgentResponse> => {
+  try {
+    // Construct the full prompt context
+    // In a real app, we might pass history differently, but here we append context
+    const fullSystemPrompt = `
+    ${systemInstruction}
+
+    [KNOWLEDGE BASE & CONTEXT]
+    ${contextData || "No external context provided."}
+    
+    [INSTRUCTIONS]
+    Answer the user's request based on your role and the provided context.
+    `;
+
+    const toolConfig: Tool[] | undefined = tools && tools.length > 0 ? [{ functionDeclarations: tools }] : undefined;
 
     const response = await ai.models.generateContent({
       model: 'gemini-2.5-flash',
-      contents: prompt,
+      contents: message,
       config: {
-        systemInstruction: "You are a senior copywriter for a top-tier tech startup in San Francisco. Your tone is confident, concise, and devoid of fluff. You prioritize clarity and logic over hype.",
-        temperature: 0.6,
+        systemInstruction: fullSystemPrompt,
+        temperature: 0.7,
+        tools: toolConfig, 
       }
     });
 
-    return response.text || "System Busy: Please try again shortly.";
+    return {
+      text: response.text,
+      functionCalls: response.functionCalls
+    };
+
   } catch (error) {
-    console.error("Gemini API Error:", error);
-    return "Network Error: Unable to reach the AI Engine. Please check your connection.";
+    console.error("Chat Error:", error);
+    return { text: "I apologize, but I'm having trouble connecting to the neural network right now." };
   }
+};
+
+export const generateMarketingContent = async (topic: string, type: 'post' | 'desc' | 'ad'): Promise<string> => {
+    try {
+        let systemInstruction = '';
+        if (type === 'post') {
+            systemInstruction = 'You are a social media marketing expert. Write a short, engaging LinkedIn or Twitter post about the topic.';
+        } else if (type === 'desc') {
+            systemInstruction = 'You are a product manager. Write a concise, professional product description for the topic.';
+        } else if (type === 'ad') {
+            systemInstruction = 'You are a creative copywriter. Write a catchy, short ad copy for the topic.';
+        }
+
+        const response = await ai.models.generateContent({
+            model: 'gemini-2.5-flash',
+            contents: topic,
+            config: {
+                systemInstruction: systemInstruction,
+            }
+        });
+
+        return response.text || "No content generated.";
+    } catch (error) {
+        console.error("Marketing Content Error:", error);
+        throw error;
+    }
 };
