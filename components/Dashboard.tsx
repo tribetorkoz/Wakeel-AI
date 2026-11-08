@@ -563,7 +563,7 @@ const Dashboard: React.FC<DashboardProps> = ({ user, onLogout }) => {
                             <div className="bg-black rounded-lg p-3 mb-4 border border-zinc-800 h-[80px] overflow-hidden relative font-mono text-xs">
                                 <div className="text-[9px] text-zinc-600 uppercase mb-1">Activity Log</div>
                                 <div className="text-zinc-400 leading-relaxed">
-                                    {agent.workStatus === 'working' ? <span className="text-indigo-400">> Processing Task...</span> : agent.lastLog ? <span className="text-emerald-400">> {agent.lastLog.substring(0,60)}...</span> : <span className="text-zinc-600">> System Idle.</span>}
+                                    {agent.workStatus === 'working' ? <span className="text-indigo-400">&gt; Processing Task...</span> : agent.lastLog ? <span className="text-emerald-400">&gt; {agent.lastLog.substring(0,60)}...</span> : <span className="text-zinc-600">&gt; System Idle.</span>}
                                 </div>
                             </div>
 

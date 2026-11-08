@@ -1,7 +1,26 @@
 
 import { GoogleGenAI, FunctionDeclaration, Tool, FunctionCall } from "@google/genai";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+// Lazy client creation: SDK throws at module load if apiKey is null/undefined,
+// which would crash the whole app when GEMINI_API_KEY is not set.
+let _ai: GoogleGenAI | null = null;
+
+const getAI = (): GoogleGenAI => {
+  if (_ai === null) {
+    const env = (typeof process !== "undefined" && process.env) || {};
+    const apiKey = env.API_KEY || env.GEMINI_API_KEY || "demo-key";
+    _ai = new GoogleGenAI({ apiKey });
+  }
+  return _ai;
+};
+
+const ai: GoogleGenAI = new Proxy({} as GoogleGenAI, {
+  get(_target, prop) {
+    const client = getAI();
+    const value = (client as any)[prop];
+    return typeof value === "function" ? value.bind(client) : value;
+  },
+});
 
 export interface ChatMessage {
   role: 'user' | 'model';
